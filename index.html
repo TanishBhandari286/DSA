@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Share Transaction Tracker</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background: #f6f8fb;
+      font-family: 'Inter', Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      background: #fff;
+      max-width: 900px;
+      margin: 32px auto;
+      padding: 32px 40px;
+      border-radius: 12px;
+      box-shadow: 0 6px 32px 0 rgba(44,62,80,0.09);
+    }
+    h2 {
+      margin-bottom: 20px;
+      color: #254397;
+      font-weight: 600;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 16px;
+    }
+    th, td {
+      padding: 11px 7px;
+      border-bottom: 1px solid #e1e4f1;
+      text-align: left;
+    }
+    th {
+      background-color: #ecf0fa;
+      font-weight: 600;
+    }
+    tr:last-child td {
+      border-bottom: none;
+    }
+    .form-row input[type="text"], .form-row input[type="number"], .form-row input[type="date"] {
+      width: 98%;
+      padding: 7px;
+      border-radius: 5px;
+      border: 1px solid #d2d8ec;
+      background: #f9fafc;
+      font-size: 15px;
+      transition: border 0.2s;
+    }
+    .form-row input[type="text"]:focus, 
+    .form-row input[type="number"]:focus, 
+    .form-row input[type="date"]:focus {
+      border: 1.5px solid #254397;
+      outline: none;
+      background: #fff;
+    }
+    .actions {
+      display: flex;
+      gap: 18px;
+      margin: 18px 0;
+    }
+    .add-row, .remove-row, .submit-btn {
+      background: #254397;
+      color: #fff;
+      border: none;
+      padding: 10px 22px;
+      border-radius: 7px;
+      font-size: 15px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background 0.15s;
+    }
+    .add-row:hover, .remove-row:hover, .submit-btn:hover {
+      background: #1552b2;
+    }
+    .remove-row {
+      background: #c93742;
+    }
+    .remove-row:hover {
+      background: #a11;
+    }
+    .radio-group {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+      margin-bottom: 0;
+    }
+    @media (max-width: 700px) {
+      .container {
+        padding: 17px 5px;
+      }
+      th, td {
+        font-size: 14px;
+      }
+      .actions {flex-direction: column;}
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h2>Share Transaction Tracker</h2>
+  <form id="shareForm">
+    <table id="transactionTable">
+      <thead>
+        <tr>
+          <th>Share Name</th>
+          <th>Share Price</th>
+          <th>Share Qty</th>
+          <th>Purchase Date</th>
+          <th>Buy</th>
+          <th>Sell</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody id="tableBody">
+        <!-- Rows will be inserted here -->
+      </tbody>
+    </table>
+    <div class="actions">
+      <button type="button" class="add-row" onclick="addRow()">+ Add Stock Row</button>
+      <button type="submit" class="submit-btn">Submit</button>
+    </div>
+  </form>
+</div>
+
+<script>
+  function getTodayDate(){
+    const today = new Date();
+    return today.toISOString().slice(0,10);
+  }
+
+  function addRow(defaults = {}) {
+    const tableBody = document.getElementById('tableBody');
+    const row = document.createElement('tr');
+    row.className = 'form-row';
+    row.innerHTML = `
+      <td>
+        <input type="text" name="share_name[]" placeholder="Eg. Reliance" required value="${defaults.share_name || ''}">
+      </td>
+      <td>
+        <input type="number" name="share_price[]" placeholder="Eg. 2420" step="0.01" min="0" required value="${defaults.share_price || ''}">
+      </td>
+      <td>
+        <input type="number" name="share_qty[]" placeholder="Eg. 10" min="1" required value="${defaults.share_qty || ''}">
+      </td>
+      <td>
+        <input type="date" name="purchase_date[]" required value="${defaults.purchase_date || getTodayDate()}">
+      </td>
+      <td>
+        <label class="radio-group">
+          <input type="radio" name="type_${tableBody.children.length}" value="buy" required ${defaults.type === "buy" ? "checked":""}>
+          Buy
+        </label>
+      </td>
+      <td>
+        <label class="radio-group">
+          <input type="radio" name="type_${tableBody.children.length}" value="sell" required ${defaults.type === "sell" ? "checked":""}>
+          Sell
+        </label>
+      </td>
+      <td>
+        <button type="button" class="remove-row" onclick="removeRow(this)">Remove</button>
+      </td>
+    `;
+    tableBody.appendChild(row);
+  }
+
+  function removeRow(el) {
+    const row = el.closest('tr');
+    row.parentNode.removeChild(row);
+  }
+
+  // Add one row by default
+  window.onload = function() {
+    addRow();
+  };
+
+  // Form submission logic sample
+  document.getElementById('shareForm').addEventListener('submit', function(e){
+    e.preventDefault();
+
+    // Collect all rows
+    const data = [];
+    const tableBody = document.getElementById('tableBody');
+    const rows = tableBody.getElementsByClassName('form-row');
+    for (let i = 0; i < rows.length; i++) {
+      const row = rows[i];
+      const share_name = row.querySelector('input[name="share_name[]"]').value;
+      const share_price = row.querySelector('input[name="share_price[]"]').value;
+      const share_qty = row.querySelector('input[name="share_qty[]"]').value;
+      const purchase_date = row.querySelector('input[name="purchase_date[]"]').value;
+      const type = row.querySelector('input[name="type_'+i+'"]:checked') ? row.querySelector('input[name="type_'+i+'"]:checked').value : '';
+
+      data.push({share_name, share_price, share_qty, purchase_date, type});
+    }
+    // You can now send 'data' (JSON) to your n8n webhook using fetch/ajax
+    // EXAMPLE:
+    /*
+    fetch('https://YOUR_N8N_WEBHOOK_URL', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({ transactions: data })
+    })
+    .then(res => alert('Submitted successfully!'))
+    .catch(err => alert('Submission failed.'));
+    */
+    alert('Form data collected! See console for details.');
+    console.log(data);
+  });
+
+</script>
+</body>
+</html>
