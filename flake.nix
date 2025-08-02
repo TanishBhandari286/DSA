@@ -21,6 +21,7 @@
         default = pkgs.mkShell {
           packages = with pkgs; [
             nodejs_22
+            nodePackages.prettier
             curl
             git
             jq
@@ -28,14 +29,14 @@
             nixpkgs-fmt
             zsh
           ];
- shellHook = ''
-      # If already in zsh, skip
-      if [ -z "$ZSH_VERSION" ]; then
-        # Avoid infinite loop
-        export IN_NIX_SHELL=1
-        exec zsh
-      fi
-    '';
+
+          shellHook = ''
+            # If already in zsh, skip
+            if [ -z "$ZSH_VERSION" ]; then
+              export IN_NIX_SHELL=1
+              exec zsh
+            fi
+          '';
         };
       });
     };
