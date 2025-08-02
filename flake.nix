@@ -36,6 +36,7 @@
               export IN_NIX_SHELL=1
               exec zsh
             fi
+echo -e "\033[1;35m🚀 Welcome to the Namaste DSA Dev Shell!\033[0m"
           '';
         };
       });
