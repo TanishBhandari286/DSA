@@ -30,14 +30,16 @@
             zsh
           ];
 
-          shellHook = ''
-            # If already in zsh, skip
-            if [ -z "$ZSH_VERSION" ]; then
-              export IN_NIX_SHELL=1
-              exec zsh
-            fi
-echo -e "\033[1;35m🚀 Welcome to the Namaste DSA Dev Shell!\033[0m"
-          '';
+shellHook = ''
+  if [ -z "$ZSH_VERSION" ]; then
+    export IN_NIX_SHELL=1
+    exec zsh --login
+  else
+    echo -e "\033[1;35m🚀 Welcome to the Namaste DSA Dev Shell!\033[0m"
+    echo -e "\033[1;34m🔧 Node: $(node -v) | Git: $(git --version | awk '{print $3}') | Shell: $SHELL\033[0m"
+    echo -e "\033[1;32m📁 Project: $PWD\033[0m"
+  fi
+'';
         };
       });
     };
