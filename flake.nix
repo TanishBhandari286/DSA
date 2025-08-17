@@ -1,45 +1,43 @@
-
 {
-  description = "Namaste DSA";
+  # A helpful description of your flake
+  description = "flake to do dsa in js";
 
+  # Flake inputs
   inputs = {
     flake-schemas.url = "https://flakehub.com/f/DeterminateSystems/flake-schemas/*";
-    nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/*";
+
+    nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.2411.*";
   };
 
+  # Flake outputs that other flakes can use
   outputs = { self, flake-schemas, nixpkgs }:
     let
+      # Helpers for producing system-specific outputs
       supportedSystems = [ "x86_64-linux" "aarch64-darwin" ];
-      forEachSupportedSystem = f:
-        nixpkgs.lib.genAttrs supportedSystems (system: f {
-          pkgs = import nixpkgs { inherit system; };
-        });
+      forEachSupportedSystem = f: nixpkgs.lib.genAttrs supportedSystems (system: f {
+        pkgs = import nixpkgs { inherit system; };
+      });
     in {
+      # Schemas tell Nix about the structure of your flake's outputs
       schemas = flake-schemas.schemas;
 
+      # Development environments
       devShells = forEachSupportedSystem ({ pkgs }: {
         default = pkgs.mkShell {
+          # Pinned packages available in the environment
           packages = with pkgs; [
             nodejs_22
-            nodePackages.prettier
             curl
             git
             jq
             wget
-            nixpkgs-fmt
-            zsh
+            bash-completion
           ];
 
-shellHook = ''
-  if [ -z "$ZSH_VERSION" ]; then
-    export IN_NIX_SHELL=1
-    exec zsh --login
-  else
-    echo -e "\033[1;35m🚀 Welcome to the Namaste DSA Dev Shell!\033[0m"
-    echo -e "\033[1;34m🔧 Node: $(node -v) | Git: $(git --version | awk '{print $3}') | Shell: $SHELL\033[0m"
-    echo -e "\033[1;32m📁 Project: $PWD\033[0m"
-  fi
-'';
+          # A hook run every time you enter the environment
+          shellHook = ''
+            "hanji , Welcome to Javascript Flake written by Tanish Bhandari , Feel free to modify it according to your use as this one is tailored for the contents available in this repo only"
+          '';
         };
       });
     };

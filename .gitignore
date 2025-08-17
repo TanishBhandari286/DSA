@@ -1,0 +1,44 @@
+
+# Node.js dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Environment files
+.env
+.env.*.local
+
+# Logs
+logs
+*.log
+*.log.*
+
+# Coverage / testing
+coverage/
+*.lcov
+
+# Build outputs
+dist/
+build/
+.cache/
+.next/
+out/
+.tmp/
+
+# Editor settings
+.vscode/
+.idea/
+*.swp
+
+# OS cruft
+.DS_Store
+Thumbs.db
+
+# Nix related
+result
+.direnv/
+.nix-*
+*.drv
+*.lock
