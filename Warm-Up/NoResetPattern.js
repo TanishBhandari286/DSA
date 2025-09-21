@@ -28,3 +28,10 @@ for(let i = 0; i<n;i++){
 // Easy: Fast/slow pointers uses (middle, cycle detect).
 // Medium: Reverse k-group nodes; in-place pointer manipulation.
 // Hard: Copy list with random pointer; O(n) time/O(1) extra trick.
+
+// --- Auto Review (DSA) ---
+// DSA Review (Linked List)
+// Complexity hints: has nested loops (likely O(n^2) or worse)
+// Easy: Fast/slow pointers uses (middle, cycle detect).
+// Medium: Reverse k-group nodes; in-place pointer manipulation.
+// Hard: Copy list with random pointer; O(n) time/O(1) extra trick.

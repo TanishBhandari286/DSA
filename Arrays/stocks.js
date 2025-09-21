@@ -29,3 +29,10 @@ var maxProfit = function (prices) {
 // Easy: Given a sorted array with duplicates, find first and last occurrence of a target.
 // Medium: Peak element in a mountain array. Why two pointers won't work as cleanly?
 // Hard: K-th smallest pair distance using BS on answer; justify monotonic predicate.
+
+// --- Auto Review (DSA) ---
+// DSA Review (Linked List)
+// Complexity hints: iterative loop(s) present (baseline O(n))
+// Easy: Detect and remove cycle (Floyd) and find cycle start.
+// Medium: Merge two sorted lists; iterative vs. recursive tradeoffs.
+// Hard: LRU cache with list+hash; operations and complexity.
