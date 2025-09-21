@@ -22,3 +22,16 @@ if(rev<-limit || rev>limit){
 
   return (xcopy<0)? -rev:rev
 };
+// --- Auto Review (DSA) ---
+// DSA Review (Bit Manipulation)
+// Complexity hints: iterative loop(s) present (baseline O(n))
+// Easy: Count set bits; Brian Kernighan vs. builtin.
+// Medium: Reverse bits and why sign matters in JS.
+// Hard: Find two unique numbers where others twice—derive.
+
+// --- Auto Review (DSA) ---
+// DSA Review (Bit Manipulation)
+// Complexity hints: iterative loop(s) present (baseline O(n))
+// Easy: Count set bits; Brian Kernighan vs. builtin.
+// Medium: Reverse bits and why sign matters in JS.
+// Hard: Find two unique numbers where others twice—derive.
