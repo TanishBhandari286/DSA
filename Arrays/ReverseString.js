@@ -23,3 +23,10 @@ var reverseString = function (s) {
 // Easy: Time/space complexity of the main routine{fn_label}.
 // Medium: Refactor for readability: name helpers, reduce nesting.
 // Hard: Edge-case audit: empty inputs, large n, negative/zero values.
+
+// --- Auto Review (DSA) ---
+// DSA Review (General DSA)
+// Complexity hints: iterative loop(s) present (baseline O(n))
+// Easy: Time/space complexity of the main routine{fn_label}.
+// Medium: Refactor for readability: name helpers, reduce nesting.
+// Hard: Edge-case audit: empty inputs, large n, negative/zero values.

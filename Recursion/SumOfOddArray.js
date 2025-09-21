@@ -28,3 +28,10 @@ console.log(sumOdd(arr));
 // Easy: Fast/slow pointers uses (middle, cycle detect).
 // Medium: Reverse k-group nodes; in-place pointer manipulation.
 // Hard: Copy list with random pointer; O(n) time/O(1) extra trick.
+
+// --- Auto Review (DSA) ---
+// DSA Review (Linked List)
+// Complexity hints: uses recursion (watch stack depth)
+// Easy: Fast/slow pointers uses (middle, cycle detect).
+// Medium: Reverse k-group nodes; in-place pointer manipulation.
+// Hard: Copy list with random pointer; O(n) time/O(1) extra trick.

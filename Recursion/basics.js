@@ -20,3 +20,10 @@ console.log(fun(a));
 // Easy: Detect and remove cycle (Floyd) and find cycle start.
 // Medium: Merge two sorted lists; iterative vs. recursive tradeoffs.
 // Hard: LRU cache with list+hash; operations and complexity.
+
+// --- Auto Review (DSA) ---
+// DSA Review (Linked List)
+// Complexity hints: uses recursion (watch stack depth)
+// Easy: Detect and remove cycle (Floyd) and find cycle start.
+// Medium: Merge two sorted lists; iterative vs. recursive tradeoffs.
+// Hard: LRU cache with list+hash; operations and complexity.
