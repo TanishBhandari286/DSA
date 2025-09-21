@@ -26,3 +26,10 @@ function merge(left, right) {
   }
   return [...res, ...left.slice(i), ...right.slice(j)];
 }
+
+// --- Auto Review (DSA) ---
+// DSA Review (Binary Search)
+// Complexity hints: uses recursion (watch stack depth)
+// Easy: Explain binary search and its invariants. When does it fail?
+// Medium: Search in a rotated sorted array in O(log n); outline pivot detection vs. modified BS.
+// Hard: Find median of two sorted arrays in O(log(min(m,n))). Describe partition logic.

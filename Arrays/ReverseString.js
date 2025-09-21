@@ -16,3 +16,10 @@ var reverseString = function (s) {
     end--;
   }
 };
+
+// --- Auto Review (DSA) ---
+// DSA Review (General DSA)
+// Complexity hints: no obvious hotspots detected
+// Easy: Time/space complexity of the main routine{fn_label}.
+// Medium: Refactor for readability: name helpers, reduce nesting.
+// Hard: Edge-case audit: empty inputs, large n, negative/zero values.

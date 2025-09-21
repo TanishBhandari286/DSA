@@ -11,3 +11,10 @@ function LinearSearch(arr, target) {
 }
 
 console.log(LinearSearch(arr, 3));
+
+// --- Auto Review (DSA) ---
+// DSA Review (Two Pointers)
+// Complexity hints: uses recursion (watch stack depth), iterative loop(s) present (baseline O(n))
+// Easy: Move zeros to the end in-place while keeping order.
+// Medium: Container With Most Water: why pointers meet-in-the-middle works.
+// Hard: Trap Rain Water in O(n) with two pointers; derive left/right max logic.
